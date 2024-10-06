@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "@/components/navbar/navbar";
+import { web_app_name } from "@/lib/constants";
+import { Poppins as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
-  title: "Huxin - Build & Share",
-  description:
-    "Huxin is a user-friendly portfolio building platform designed to help you showcase your talents and achievements effortlessly. Create, share, and manage your professional presence with customizable templates and a seamless user experience.",
-  keywords:
-    "portfolio, resume builder, Huxin, showcase, projects, user-friendly, non-technical, web application",
+  title: `${web_app_name} - Build & Share`,
+  description: `${web_app_name} is a user-friendly portfolio building platform designed to help you showcase your talents and achievements effortlessly. Create, share, and manage your professional presence with customizable templates and a seamless user experience.`,
+  keywords: "portfolio builder, portfolic",
   authors: [
     { name: "Jaskaran Singh", url: "https://developerjaskaran.netlify.app/" },
   ],
@@ -20,9 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className={cn("font-sans antialiased", fontSans.variable)}>
         <Navbar />
-        {children}
+        <div className="pt-12">{children}</div>
       </body>
     </html>
   );
